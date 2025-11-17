@@ -1,19 +1,21 @@
-#include <iostream>
 #include "math_utils.hpp"
+#include <gtest/gtest.h>
+#include <vector>
 
-int main() {
-    if (math_utils::add(2, 3) != 5) {
-        std::cerr << "Test failed: add(2,3)\n";
-        return 1;
-    }
+// Test de la función add()
+TEST(MathUtilsTest, AddBasic) {
+    EXPECT_EQ(math_utils::add(2, 3), 5);
+    EXPECT_EQ(math_utils::add(-1, 1), 0);
+    EXPECT_EQ(math_utils::add(0, 0), 0);
+}
 
+// Test de la función average()
+TEST(MathUtilsTest, AverageBasic) {
     std::vector<int> nums = {2, 4, 6, 8};
-    double avg = math_utils::average(nums);
-    if (avg != 5.0) {
-        std::cerr << "Test failed: average()\n";
-        return 1;
-    }
+    EXPECT_DOUBLE_EQ(math_utils::average(nums), 5.0);
+}
 
-    std::cout << "All tests passed!\n";
-    return 0;
+TEST(MathUtilsTest, AverageEmptyVector) {
+    std::vector<int> empty;
+    EXPECT_DOUBLE_EQ(math_utils::average(empty), 0.0);
 }
